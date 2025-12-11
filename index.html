@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden;
+            background: #f3e5dc;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 250, 245, 0.95);
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(230, 180, 160, 0.3);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: #8b6f5c;
+            letter-spacing: 2px;
+        }
+
+        .logo span {
+            background: linear-gradient(135deg, #d4a5a5 0%, #c98d8d 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #8b6f5c;
+            text-decoration: none;
+            font-size: 14px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(135deg, #d4a5a5 0%, #c98d8d 100%);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 200%;
+            height: 100%;
+            display: flex;
+            animation: scrollHero 20s linear infinite;
+            z-index: 1;
+        }
+
+        .hero-bg img {
+            width: 50%;
+            height: 100%;
+            object-fit: cover;
+            object-position: bottom;
+        }
+
+        @keyframes scrollHero {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 2;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            animation: pulse 15s ease-in-out infinite;
+            z-index: 3;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.3; }
+            50% { transform: scale(1.2) rotate(180deg); opacity: 0.5; }
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 4;
+            color: #ffffff;
+        }
+
+        .hero h1 {
+            font-size: 80px;
+            font-weight: 900;
+            margin-bottom: 20px;
+            color: #ffffff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero p {
+            font-size: 24px;
+            color: #e0e0e0;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+
+        .scroll-indicator::after {
+            content: '↓';
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 30px;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-10px); }
+            60% { transform: translateX(-50%) translateY(-5px); }
+        }
+
+        /* Mosaic Grid */
+        .mosaic-container {
+            padding: 100px 150px;
+            background: #f3e5dc;
+            display: flex;
+            justify-content: center;
+        }
+
+        .mosaic-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            grid-auto-rows: 300px;
+            gap: 20px;
+            max-width: 1600px;
+            width: 100%;
+            margin: 0 auto;
+            grid-auto-flow: dense;
+        }
+
+        .mosaic-tile {
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            background-size: cover;
+            background-position: center;
+        }
+
+        .mosaic-tile::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.3);
+            transition: all 0.5s;
+            z-index: 1;
+        }
+
+        .mosaic-tile:hover::before {
+            background: rgba(0, 0, 0, 0.6);
+        }
+
+        .mosaic-tile:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .tile-content {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+            z-index: 2;
+        }
+
+        .tile-title {
+            font-size: 36px;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 15px;
+            text-align: center;
+            transition: transform 0.5s;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+        }
+
+        .mosaic-tile:hover .tile-title {
+            transform: translateY(-5px);
+            color: #fff;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.9);
+        }
+
+        .tile-description {
+            font-size: 18px;
+            color: #e0e0e0;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s;
+            font-weight: 700;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+        }
+
+        .mosaic-tile:hover .tile-description {
+            opacity: 1;
+            transform: translateY(0);
+            color: #fff;
+        }
+
+        /* Grid Layout Patterns */
+        .tile-large { grid-column: span 6; grid-row: span 2; }
+        .tile-wide { grid-column: span 6; grid-row: span 1; }
+        .tile-tall { grid-column: span 4; grid-row: span 2; }
+        .tile-medium { grid-column: span 4; grid-row: span 1; }
+        .tile-small { grid-column: span 3; grid-row: span 1; }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .mosaic-grid {
+                grid-template-columns: repeat(8, 1fr);
+                grid-auto-rows: 250px;
+            }
+            .tile-large { grid-column: span 4; grid-row: span 2; }
+            .tile-wide { grid-column: span 4; grid-row: span 1; }
+            .tile-tall { grid-column: span 4; grid-row: span 2; }
+            .tile-medium { grid-column: span 4; grid-row: span 1; }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 50px; }
+            .hero p { font-size: 18px; }
+            .mosaic-grid {
+                grid-template-columns: repeat(4, 1fr);
+                grid-auto-rows: 200px;
+                gap: 15px;
+            }
+            .tile-large, .tile-wide, .tile-tall, .tile-medium { 
+                grid-column: span 4; 
+                grid-row: span 1; 
+            }
+            nav { padding: 20px 25px; }
+            .nav-links { gap: 20px; font-size: 12px; }
+        }
+
+        /* Floating Animation */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .float {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .float:nth-child(2) { animation-delay: 1s; }
+        .float:nth-child(3) { animation-delay: 2s; }
+        .float:nth-child(4) { animation-delay: 0.5s; }
+
+        /* Tile Backgrounds */
+        .tile-about { background-image: url('images/about-me.jpg'); }
+        .tile-skills { background-image: url('images/skills.jpg'); }
+        .tile-experience { background-image: url('images/experience.jpg'); }
+        .tile-projects { background-image: url('images/projects.jpg'); }
+        .tile-creativity { background-image: url('images/creativity.jpg'); }
+        .tile-accomplishments { background-image: url('images/accomplishments.jpg'); }
+        .tile-community { background-image: url('images/community.jpg'); }
+        .tile-contact { background-image: url('images/contact.jpg'); }
+        .tile-blog { background-image: url('images/blog.jpg'); }
+        .tile-social { background-image: url('images/social.jpg'); }
+        .tile-resume { background-image: url('images/resume.jpg'); }
+
+        /* Footer */
+        footer {
+            background: #1a1a1a;
+            color: #fff;
+            padding: 60px 20px;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .footer-links a {
+            color: #d4a5a5;
+            text-decoration: none;
+            font-size: 18px;
+            transition: all 0.3s;
+            font-weight: 600;
+            position: relative;
+        }
+
+        .footer-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #fff;
+            transition: width 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #fff;
+        }
+
+        .footer-links a:hover::after {
+            width: 100%;
+        }
+
+        .footer-text {
+            color: #666;
+            font-size: 14px;
+            margin-top: 20px;
+        }
+
+        footer .logo {
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">GOPIKA<span>CHAUHAN</span></div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="#portfolio">Portfolio</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-bg">
+            <img src="images/hero.jpg" alt="Hero Background">
+            <img src="images/hero.jpg" alt="Hero Background">
+        </div>
+        <div class="hero-content">
+            <h1>Driven by curiosity. Grounded by impact. Building what matters</h1>
+            <p>Cloud | Open-Source | Web 3</p>
+        </div>
+        <div class="scroll-indicator"></div>
+    </section>
+
+    <!-- Mosaic Grid -->
+    <section class="mosaic-container" id="portfolio">
+        <div class="mosaic-grid">
+            <!-- About Me - Large (6x2) -->
+            <div class="mosaic-tile tile-large float tile-about" onclick="window.location.href='about.html'">
+                <div class="tile-content">
+                    <div class="tile-title">About Me</div>
+                    <div class="tile-description">Discover my journey, passions, and what drives me to create</div>
+                </div>
+            </div>
+
+            <!-- Experience - Large (6x2) -->
+            <div class="mosaic-tile tile-large float tile-experience" onclick="window.location.href='experience.html'">
+                <div class="tile-content">
+                    <div class="tile-title">Experience</div>
+                    <div class="tile-description">Professional journey and career milestones</div>
+                </div>
+            </div>
+
+            <!-- Skills - Medium (4x1) -->
+            <div class="mosaic-tile tile-medium float tile-skills" onclick="window.location.href='skills.html'">
+                <div class="tile-content">
+                    <div class="tile-title">Skills</div>
+                    <div class="tile-description">Expertise in design, development, and creative problem-solving</div>
+                </div>
+            </div>
+
+            <!-- Projects - Medium (4x1) -->
+            <div class="mosaic-tile tile-medium float tile-projects" onclick="window.location.href='projects.html'">
+                <div class="tile-content">
+                    <div class="tile-title">Projects</div>
+                    <div class="tile-description">Featured work and case studies</div>
+                </div>
+            </div>
+
+            <!-- Creativity Corner - Medium (4x1) -->
+            <div class="mosaic-tile tile-medium float tile-creativity" onclick="window.location.href='creativity.html'">
+                <div class="tile-content">
+                    <div class="tile-title">Creativity Corner</div>
+                    <div class="tile-description">Thoughts, ideas, and creative experiments</div>
+                </div>
+            </div>
+
+            <!-- Community - Large (6x2) -->
+            <div class="mosaic-tile tile-large float tile-community" onclick="window.location.href='community.html'">
+                <div class="tile-content">
+                    <div class="tile-title">Community Outreach</div>
+                    <div class="tile-description">Giving back through volunteering and social initiatives</div>
+                </div>
+            </div>
+
+            <!-- Blog - Large (6x2) -->
+            <div class="mosaic-tile tile-large float tile-blog">
+                <div class="tile-content">
+                    <div class="tile-title">Blog</div>
+                    <div class="tile-description">Stories, tutorials, and insights</div>
+                </div>
+            </div>
+
+            <!-- Accomplishments - Wide (6x1) -->
+            <div class="mosaic-tile tile-wide float tile-accomplishments" onclick="window.location.href='accomplishments.html'">
+                <div class="tile-content">
+                    <div class="tile-title">Accomplishments</div>
+                    <div class="tile-description">Awards, recognition, and achievements</div>
+                </div>
+            </div>
+
+            <!-- Resume - Wide (6x1) -->
+            <div class="mosaic-tile tile-wide float tile-resume" onclick="window.open('https://drive.google.com/file/d/1v-0xz6Vvg9WF31rjwokqClgW5OQuXBhr/view?usp=sharing', '_blank')">
+                <div class="tile-content">
+                    <div class="tile-title">Resume</div>
+                    <div class="tile-description">Download CV</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <ul class="footer-links">
+                <li><a href="https://www.linkedin.com/in/gopika-chauhan18/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+                <li><a href="https://github.com/Cephei18" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+                <li><a href="https://twitter.com/okgopika" target="_blank" rel="noopener noreferrer">Twitter</a></li>
+                <li><a href="mailto:your.email@example.com">Email</a></li>
+            </ul>
+            <p class="footer-text">&copy; 2025 Gopika Chauhan. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Intersection Observer for fade-in animations
+        const tiles = document.querySelectorAll('.mosaic-tile');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }, index * 100);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        tiles.forEach(tile => {
+            tile.style.opacity = '0';
+            tile.style.transform = 'translateY(30px)';
+            tile.style.transition = 'opacity 0.6s, transform 0.6s';
+            observer.observe(tile);
+        });
+
+        // Add click handlers for tiles
+        tiles.forEach(tile => {
+            tile.addEventListener('click', () => {
+                const title = tile.querySelector('.tile-title').textContent;
+                console.log(`Clicked: ${title}`);
+                // Add your navigation logic here
+            });
+        });
+    </script>
+</body>
+</html>

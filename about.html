@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me - Gopika Chauhan</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden;
+            background: #f3e5dc;
+            color: #333;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 250, 245, 0.95);
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(230, 180, 160, 0.3);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: #8b6f5c;
+            letter-spacing: 2px;
+        }
+
+        .logo span {
+            background: linear-gradient(135deg, #d4a5a5 0%, #c98d8d 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #8b6f5c;
+            text-decoration: none;
+            font-size: 14px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(135deg, #d4a5a5 0%, #c98d8d 100%);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* About Section */
+        .about-container {
+            padding: 150px 150px 100px;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            background-image: url('images/about-me.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            position: relative;
+        }
+
+        .about-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1;
+        }
+
+        .about-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            background: rgba(255, 255, 255, 0.05);
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+            padding: 60px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #e0e0e0;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .about-title {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 40px;
+            text-align: center;
+            background: linear-gradient(135deg, #fff 0%, #d4a5a5 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .about-text {
+            font-size: 18px;
+            line-height: 1.8;
+            margin-bottom: 25px;
+        }
+
+        .about-text strong {
+            color: #fff;
+            font-weight: 700;
+        }
+
+        .highlight-box {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 30px 0;
+            border-left: 4px solid #d4a5a5;
+        }
+
+        .highlight-box h3 {
+            color: #fff;
+            margin-bottom: 10px;
+            font-size: 20px;
+        }
+
+        .highlight-box ul {
+            list-style: none;
+            padding-left: 10px;
+        }
+
+        .highlight-box li {
+            margin-bottom: 8px;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .highlight-box li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: #d4a5a5;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .about-container {
+                padding: 100px 20px;
+            }
+            .about-content {
+                padding: 30px;
+            }
+            .about-title {
+                font-size: 32px;
+            }
+            .about-text {
+                font-size: 16px;
+            }
+            nav { padding: 20px 25px; }
+            .nav-links { gap: 20px; font-size: 12px; }
+        }
+        .about-footer {
+            text-align: center;
+            margin-top: 40px;
+            font-style: italic;
+            color: #d4a5a5;
+        }
+
+        .active-link {
+            color: #d4a5a5 !important;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">GOPIKA<span>CHAUHAN</span></div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html" class="active-link">About</a></li>
+            <li><a href="index.html#portfolio">Portfolio</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section class="about-container">
+        <div class="about-overlay"></div>
+        <div class="about-content">
+            <h1 class="about-title">ABOUT ME: “The Gopika Origin Episode”</h1>
+            
+            <p class="about-text">
+                Hi, I’m <strong>Gopika</strong>  currently pursuing my B.Tech in Computer Science & Engineering at IIT Mandi, after an early education phase defined by curiosity, too many questions, and an unusual excitement for problem-solving that most teachers politely called “enthusiastic.”
+            </p>
+
+            <p class="about-text">
+                My journey into tech didn’t start with a plan. It started with… an intellectual detour, followed by a curiosity explosion, followed by a long series of experiments that may or may not have crashed my system. (Scientists now call this sequence <strong>The Gopika Big Bang</strong>.)
+            </p>
+
+            <div class="highlight-box">
+                <h3>Since then, my interests have settled into a stable orbit around:</h3>
+                <ul>
+                    <li> <strong>AI/ML</strong> : modelling patterns in a universe full of delightful randomness</li>
+                    <li> <strong>AR/VR & Human-centred systems</strong> : designing experiences powered by empathy, not ego</li>
+                    <li> <strong>Cloud & scalable tech</strong> : where ideas expand faster than the observable cosmos</li>
+                    <li> <strong>Tech exploration</strong> : because the unknown is the best playground</li>
+                </ul>
+            </div>
+
+            <p class="about-text">
+                What drives me is something I call <strong>Tech Empathy</strong>  the belief that technology becomes meaningful only when it understands people, supports them, and solves problems that actually matter. That philosophy quietly threads through everything I create (you’ll see proof in the Projects section).
+            </p>
+
+            <p class="about-text">
+                I’m also running a continuous self-upgrade cycle: refining skills, improving clarity, debugging insecurities, and optimising for growth. The goal? A version of me that is more stable, more curious, and far less likely to crash under emotional multithreading.
+            </p>
+
+            <p class="about-text">
+                In short: I’m building a life and career rooted in logic, empathy, exploration, and just the right amount of scientific drama.
+            </p>
+
+            <p class="about-text about-footer">
+                Welcome to my universe  where curiosity expands freely, ideas collide creatively, and everything begins with a spark.
+            </p>
+        </div>
+    </section>
+</body>
+</html>

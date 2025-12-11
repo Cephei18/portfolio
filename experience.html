@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Experience - Gopika Chauhan</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden;
+            background: #f3e5dc;
+            color: #333;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 250, 245, 0.95);
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(230, 180, 160, 0.3);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: #8b6f5c;
+            letter-spacing: 2px;
+        }
+
+        .logo span {
+            background: linear-gradient(135deg, #d4a5a5 0%, #c98d8d 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #8b6f5c;
+            text-decoration: none;
+            font-size: 14px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(135deg, #d4a5a5 0%, #c98d8d 100%);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Experience Section */
+        .experience-container {
+            padding: 150px 150px 100px;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            background-image: url('images/experience.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            position: relative;
+        }
+
+        .experience-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1;
+        }
+
+        .experience-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            background: rgba(255, 255, 255, 0.05);
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+            padding: 60px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #e0e0e0;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .experience-title {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 40px;
+            text-align: center;
+            background: linear-gradient(135deg, #fff 0%, #d4a5a5 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .experience-item {
+            margin-bottom: 50px;
+            border-left: 4px solid #d4a5a5;
+            padding-left: 30px;
+            position: relative;
+        }
+
+        .experience-item::before {
+            content: '';
+            position: absolute;
+            left: -12px;
+            top: 0;
+            width: 20px;
+            height: 20px;
+            background: #d4a5a5;
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(212, 165, 165, 0.5);
+        }
+
+        .experience-item h2 {
+            font-size: 28px;
+            color: #fff;
+            margin-bottom: 15px;
+        }
+
+        .experience-text {
+            font-size: 18px;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .experience-text strong {
+            color: #fff;
+            font-weight: 700;
+        }
+
+        .separator {
+            text-align: center;
+            font-size: 30px;
+            color: #d4a5a5;
+            margin: 40px 0;
+            opacity: 0.5;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .experience-container {
+                padding: 100px 20px;
+            }
+            .experience-content {
+                padding: 30px;
+            }
+            .experience-title {
+                font-size: 32px;
+            }
+            .experience-item h2 {
+                font-size: 22px;
+            }
+            .experience-text {
+                font-size: 16px;
+            }
+            nav { padding: 20px 25px; }
+            .nav-links { gap: 20px; font-size: 12px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">GOPIKA<span>CHAUHAN</span></div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="index.html#portfolio">Portfolio</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section class="experience-container">
+        <div class="experience-overlay"></div>
+        <div class="experience-content">
+            <h1 class="experience-title">EXPERIENCE</h1>
+            
+            <div class="experience-item">
+                <h2>Open-Source Contributor GSSoC 2024 (Web Development)</h2>
+                <p class="experience-text">
+                    My open-source journey began like most scientific discoveries 
+                    . with curiosity, a pull request, and a few unexpected bugs that appeared out of nowhere (much like subatomic particles). During <strong>GSSoC 2024</strong>, I contributed to various web development projects, building interfaces, fixing inconsistencies, and refining features until the system reached a stable universe of its own.
+                </p>
+                <p class="experience-text">
+                    Through every commit, I learned how collaborative code evolves, how communities shape innovation, and how even the smallest contributions can cause meaningful ripple effects in a project’s ecosystem.
+                </p>
+            </div>
+
+            <div class="separator">⸻</div>
+
+            <div class="experience-item">
+                <h2>Tech Exploration & Learning Journey - Ongoing</h2>
+                <p class="experience-text">
+                    Parallel to my academics at <strong>IIT Mandi</strong>, I’m constantly running experiments in my personal tech lab  testing ideas, exploring new domains, and upgrading my skill set through structured chaos. From <strong>AI/ML</strong> to <strong>AR/VR</strong>, cloud computing to algorithmic thinking, I treat every new concept like a mini-cosmic expansion: start with a spark, follow the pattern, and watch it grow into something meaningful.
+                </p>
+                <p class="experience-text">
+                    This self-driven exploration keeps me adaptable, curious, and always ready for the next intellectual plot twist.
+                </p>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
