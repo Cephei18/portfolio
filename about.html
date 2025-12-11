@@ -79,6 +79,21 @@
             width: 100%;
         }
 
+        /* Mobile Menu */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 6px;
+        }
+
+        .bar {
+            width: 30px;
+            height: 3px;
+            background-color: #8b6f5c;
+            transition: all 0.3s;
+        }
+
         /* About Section */
         .about-container {
             padding: 150px 150px 100px;
@@ -181,6 +196,30 @@
         }
 
         @media (max-width: 768px) {
+            .menu-toggle {
+                display: flex;
+            }
+
+            .nav-links {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(255, 250, 245, 0.98);
+                flex-direction: column;
+                align-items: center;
+                padding: 30px 0;
+                gap: 25px;
+                transform: translateY(-200%);
+                transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+                border-bottom: 1px solid rgba(230, 180, 160, 0.3);
+            }
+
+            .nav-links.active {
+                transform: translateY(0);
+            }
+
             .about-container {
                 padding: 100px 20px;
             }
@@ -193,8 +232,7 @@
             .about-text {
                 font-size: 16px;
             }
-            nav { padding: 20px 25px; }
-            .nav-links { gap: 20px; font-size: 12px; }
+            nav { padding: 15px 20px; }
         }
         .about-footer {
             text-align: center;
@@ -212,6 +250,11 @@
     <!-- Navigation -->
     <nav>
         <div class="logo">GOPIKA<span>CHAUHAN</span></div>
+        <div class="menu-toggle">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
         <ul class="nav-links">
             <li><a href="index.html">Home</a></li>
             <li><a href="about.html" class="active-link">About</a></li>
@@ -260,5 +303,27 @@
             </p>
         </div>
     </section>
+
+    <script>
+        // Mobile Menu Toggle
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            
+            // Animate bars
+            const bars = document.querySelectorAll('.bar');
+            if (navLinks.classList.contains('active')) {
+                bars[0].style.transform = 'rotate(-45deg) translate(-5px, 6px)';
+                bars[1].style.opacity = '0';
+                bars[2].style.transform = 'rotate(45deg) translate(-5px, -6px)';
+            } else {
+                bars[0].style.transform = 'none';
+                bars[1].style.opacity = '1';
+                bars[2].style.transform = 'none';
+            }
+        });
+    </script>
 </body>
 </html>
