@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web 3 Exposure - Gopika Chauhan</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden;
+            background: #f3e5dc;
+            color: #333;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 250, 245, 0.95);
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(230, 180, 160, 0.3);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: #8b6f5c;
+            letter-spacing: 2px;
+        }
+
+        .logo span {
+            background: linear-gradient(135deg, #d4a5a5 0%, #c98d8d 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #8b6f5c;
+            text-decoration: none;
+            font-size: 14px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(135deg, #d4a5a5 0%, #c98d8d 100%);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Mobile Menu */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 6px;
+        }
+
+        .bar {
+            width: 30px;
+            height: 3px;
+            background-color: #8b6f5c;
+            transition: all 0.3s;
+        }
+
+        /* Web3 Section */
+        .web3-container {
+            padding: 150px 50px 100px;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            background-image: url('images/web3.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            position: relative;
+        }
+
+        .web3-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.85);
+            z-index: 1;
+        }
+
+        .content-block {
+            position: relative;
+            z-index: 2;
+            max-width: 1000px;
+            background: rgba(255, 255, 255, 0.05);
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+            padding: 60px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #e0e0e0;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            animation: fadeInUp 1s ease-out;
+            width: 100%;
+        }
+
+        .content-block h2 {
+            margin-bottom: 30px;
+            font-size: 36px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #fff 0%, #a18cd1 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-align: center;
+        }
+
+        /* Journey Road Map */
+        .journey-container {
+            position: relative;
+            max-width: 1000px;
+            margin: 60px auto 0;
+            padding: 20px 0;
+        }
+
+        /* The Road */
+        .journey-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 4px;
+            background: linear-gradient(to bottom, #a18cd1, #6441A5, #ff9a9e);
+            transform: translateX(-50%);
+            border-radius: 4px;
+            box-shadow: 0 0 15px rgba(161, 140, 209, 0.5);
+        }
+
+        .journey-item {
+            position: relative;
+            width: 50%;
+            padding: 0 40px;
+            margin-bottom: 60px;
+            box-sizing: border-box;
+        }
+
+        .journey-item:nth-child(odd) {
+            left: 0;
+            text-align: right;
+        }
+
+        .journey-item:nth-child(even) {
+            left: 50%;
+            text-align: left;
+        }
+
+        /* The Milestone Dot */
+        .journey-item::after {
+            content: '';
+            position: absolute;
+            top: 20px;
+            width: 16px;
+            height: 16px;
+            background: #1a1a1a;
+            border: 4px solid #a18cd1;
+            border-radius: 50%;
+            z-index: 1;
+            box-shadow: 0 0 15px rgba(161, 140, 209, 0.8);
+            transition: all 0.3s ease;
+        }
+
+        .journey-item:nth-child(odd)::after {
+            right: -12px;
+        }
+
+        .journey-item:nth-child(even)::after {
+            left: -12px;
+        }
+
+        .journey-item:hover::after {
+            background: #a18cd1;
+            border-color: #fff;
+            transform: scale(1.3);
+        }
+
+        /* Content Card */
+        .journey-content {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(5px);
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            position: relative;
+            transition: transform 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .journey-item:hover .journey-content {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.12);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .journey-content h3 {
+            color: #fff;
+            font-size: 22px;
+            margin-bottom: 10px;
+            font-weight: 700;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .journey-content p {
+            margin: 0;
+            color: #ccc;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        /* Connector Line */
+        .journey-content::before {
+            content: '';
+            position: absolute;
+            top: 28px;
+            width: 40px;
+            height: 2px;
+            background: linear-gradient(90deg, #a18cd1, transparent);
+        }
+
+        .journey-item:nth-child(odd) .journey-content::before {
+            right: -40px;
+            background: linear-gradient(-90deg, #a18cd1, transparent);
+        }
+
+        .journey-item:nth-child(even) .journey-content::before {
+            left: -40px;
+            background: linear-gradient(90deg, #a18cd1, transparent);
+        }
+
+        .closing-text {
+            margin-top: 80px;
+            font-weight: 800;
+            color: #fff;
+            font-style: normal;
+            font-size: 32px;
+            text-align: center;
+            background: linear-gradient(135deg, #fff 0%, #a18cd1 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+            z-index: 2;
+            text-shadow: 0 4px 8px rgba(0,0,0,0.5);
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .web3-container { padding: 100px 20px; }
+            .content-block { padding: 30px 20px; }
+            
+            /* Timeline Mobile */
+            .journey-container::before {
+                left: 20px;
+            }
+            .journey-item {
+                width: 100%;
+                padding-left: 60px;
+                padding-right: 0;
+                margin-bottom: 40px;
+            }
+            .journey-item:nth-child(odd), .journey-item:nth-child(even) {
+                left: 0;
+                text-align: left;
+            }
+            .journey-item:nth-child(odd)::after, .journey-item:nth-child(even)::after {
+                left: 12px;
+                right: auto;
+            }
+            .journey-item:nth-child(odd) .journey-content::before, 
+            .journey-item:nth-child(even) .journey-content::before {
+                left: -40px;
+                right: auto;
+                width: 40px;
+                background: linear-gradient(90deg, #a18cd1, transparent);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">GOPIKA<span>CHAUHAN</span></div>
+        <div class="menu-toggle">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="index.html#portfolio">Portfolio</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Web3 Section -->
+    <div class="web3-container">
+        <div class="web3-overlay"></div>
+        <div class="content-block">
+            <h2>My Web3 Journey</h2>
+            <p style="text-align: center; font-size: 24px; margin-bottom: 40px; color: #fff;">2025 is the year Web3 found me.<br><span style="font-size: 18px; opacity: 0.8;">Not through noise or speculation, but through learning, community, and building.</span></p>
+            
+            <div class="journey-container">
+                <!-- Item 1 (Left) -->
+                <div class="journey-item">
+                    <div class="journey-content">
+                        <h3>Selected for sheFi Season 14</h3>
+                        <p>Learned the fundamentals: blockchain, wallets, crypto, DeFi, liquidity pools, NFTs — and most importantly, why Web3 matters.</p>
+                    </div>
+                </div>
+
+                <!-- Item 2 (Right) -->
+                <div class="journey-item">
+                    <div class="journey-content">
+                        <h3>Organized Stellar Camp @ IIT Mandi</h3>
+                        <p>Focused on Web3 community building, ecosystem exposure, and helping students explore beyond buzzwords.</p>
+                    </div>
+                </div>
+
+                <!-- Item 3 (Left) -->
+                <div class="journey-item">
+                    <div class="journey-content">
+                        <h3>Got my Monad airdrop</h3>
+                        <p>A small moment, but a memorable one — seeing on-chain participation turn real.</p>
+                    </div>
+                </div>
+
+                <!-- Item 4 (Right) -->
+                <div class="journey-item">
+                    <div class="journey-content">
+                        <h3>Attended India Blockchain Meet, Bengaluru</h3>
+                        <p>Met builders, founders, and researchers. Conversations > conferences.</p>
+                    </div>
+                </div>
+
+                <!-- Item 5 (Left) -->
+                <div class="journey-item">
+                    <div class="journey-content">
+                        <h3>Coded my first Web3 project</h3>
+                        <p>From theory to contracts, wallets, and transactions. This is where it clicked.</p>
+                    </div>
+                </div>
+
+                <!-- Item 6 (Right) -->
+                <div class="journey-item">
+                    <div class="journey-content">
+                        <h3>Selected for dev3pack Fellowship</h3>
+                        <p>Next phase: deep dive into smart contracts, dApps, and becoming a Web3 developer.</p>
+                    </div>
+                </div>
+            </div>
+
+            <p class="closing-text">Still learning. Still building.<br>But this is just the beginning.</p>
+        </div>
+    </div>
+
+    <script>
+        // Mobile Menu Toggle
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            
+            // Animate bars
+            const bars = document.querySelectorAll('.bar');
+            if (navLinks.classList.contains('active')) {
+                bars[0].style.transform = 'rotate(-45deg) translate(-5px, 6px)';
+                bars[1].style.opacity = '0';
+                bars[2].style.transform = 'rotate(45deg) translate(-5px, -6px)';
+            } else {
+                bars[0].style.transform = 'none';
+                bars[1].style.opacity = '1';
+                bars[2].style.transform = 'none';
+            }
+        });
+    </script>
+</body>
+</html>

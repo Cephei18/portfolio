@@ -213,7 +213,7 @@
         .mosaic-grid {
             display: grid;
             grid-template-columns: repeat(12, 1fr);
-            grid-auto-rows: 300px;
+            grid-auto-rows: 250px;
             gap: 20px;
             max-width: 1600px;
             width: 100%;
@@ -297,6 +297,7 @@
         }
 
         /* Grid Layout Patterns */
+        .tile-hero { grid-column: span 8; grid-row: span 2; }
         .tile-large { grid-column: span 6; grid-row: span 2; }
         .tile-wide { grid-column: span 6; grid-row: span 1; }
         .tile-tall { grid-column: span 4; grid-row: span 2; }
@@ -309,6 +310,7 @@
                 grid-template-columns: repeat(8, 1fr);
                 grid-auto-rows: 250px;
             }
+            .tile-hero { grid-column: span 8; grid-row: span 2; }
             .tile-large { grid-column: span 4; grid-row: span 2; }
             .tile-wide { grid-column: span 4; grid-row: span 1; }
             .tile-tall { grid-column: span 4; grid-row: span 2; }
@@ -387,6 +389,8 @@
         .tile-blog { background-image: url('images/blog.jpg'); }
         .tile-social { background-image: url('images/social.jpg'); }
         .tile-resume { background-image: url('images/resume.jpg'); }
+        .tile-events { background-image: url('images/events.jpg'); }
+        .tile-web3 { background-image: url('images/web3.jpg'); }
 
         /* Footer */
         footer {
@@ -487,19 +491,35 @@
     <!-- Mosaic Grid -->
     <section class="mosaic-container" id="portfolio">
         <div class="mosaic-grid">
-            <!-- About Me - Large (6x2) -->
-            <div class="mosaic-tile tile-large float tile-about" onclick="window.location.href='about.html'">
+            <!-- About Me - Hero (8x2) -->
+            <div class="mosaic-tile tile-hero float tile-about" onclick="window.location.href='about.html'">
                 <div class="tile-content">
                     <div class="tile-title">About Me</div>
                     <div class="tile-description">Discover my journey, passions, and what drives me to create</div>
                 </div>
             </div>
 
-            <!-- Experience - Large (6x2) -->
-            <div class="mosaic-tile tile-large float tile-experience" onclick="window.location.href='experience.html'">
+            <!-- Resume - Tall (4x2) -->
+            <div class="mosaic-tile tile-tall float tile-resume" onclick="window.open('https://drive.google.com/file/d/1v-0xz6Vvg9WF31rjwokqClgW5OQuXBhr/view?usp=sharing', '_blank')">
+                <div class="tile-content">
+                    <div class="tile-title">Resume</div>
+                    <div class="tile-description">Download CV</div>
+                </div>
+            </div>
+
+            <!-- Experience - Tall (4x2) -->
+            <div class="mosaic-tile tile-tall float tile-experience" onclick="window.location.href='experience.html'">
                 <div class="tile-content">
                     <div class="tile-title">Experience</div>
                     <div class="tile-description">Professional journey and career milestones</div>
+                </div>
+            </div>
+
+            <!-- Projects - Hero (8x2) -->
+            <div class="mosaic-tile tile-hero float tile-projects" onclick="window.location.href='projects.html'">
+                <div class="tile-content">
+                    <div class="tile-title">Projects</div>
+                    <div class="tile-description">Featured work and case studies</div>
                 </div>
             </div>
 
@@ -511,14 +531,6 @@
                 </div>
             </div>
 
-            <!-- Projects - Medium (4x1) -->
-            <div class="mosaic-tile tile-medium float tile-projects" onclick="window.location.href='projects.html'">
-                <div class="tile-content">
-                    <div class="tile-title">Projects</div>
-                    <div class="tile-description">Featured work and case studies</div>
-                </div>
-            </div>
-
             <!-- Creativity Corner - Medium (4x1) -->
             <div class="mosaic-tile tile-medium float tile-creativity" onclick="window.location.href='creativity.html'">
                 <div class="tile-content">
@@ -527,19 +539,11 @@
                 </div>
             </div>
 
-            <!-- Community - Large (6x2) -->
-            <div class="mosaic-tile tile-large float tile-community" onclick="window.location.href='community.html'">
+            <!-- Community - Medium (4x1) -->
+            <div class="mosaic-tile tile-medium float tile-community" onclick="window.location.href='community.html'">
                 <div class="tile-content">
                     <div class="tile-title">Community Outreach</div>
                     <div class="tile-description">Giving back through volunteering and social initiatives</div>
-                </div>
-            </div>
-
-            <!-- Blog - Large (6x2) -->
-            <div class="mosaic-tile tile-large float tile-blog">
-                <div class="tile-content">
-                    <div class="tile-title">Blog</div>
-                    <div class="tile-description">Stories, tutorials, and insights</div>
                 </div>
             </div>
 
@@ -551,11 +555,27 @@
                 </div>
             </div>
 
-            <!-- Resume - Wide (6x1) -->
-            <div class="mosaic-tile tile-wide float tile-resume" onclick="window.open('https://drive.google.com/file/d/1v-0xz6Vvg9WF31rjwokqClgW5OQuXBhr/view?usp=sharing', '_blank')">
+            <!-- Events - Wide (6x1) -->
+            <div class="mosaic-tile tile-wide float tile-events" onclick="window.location.href='events.html'">
                 <div class="tile-content">
-                    <div class="tile-title">Resume</div>
-                    <div class="tile-description">Download CV</div>
+                    <div class="tile-title">Events & Conferences</div>
+                    <div class="tile-description">Talks, workshops, and community events</div>
+                </div>
+            </div>
+
+            <!-- Web 3 - Hero (8x2) -->
+            <div class="mosaic-tile tile-hero float tile-web3" onclick="window.location.href='web3.html'">
+                <div class="tile-content">
+                    <div class="tile-title">Web 3</div>
+                    <div class="tile-description">My exposure to Web 3 technologies</div>
+                </div>
+            </div>
+
+            <!-- Blog - Tall (4x2) -->
+            <div class="mosaic-tile tile-tall float tile-blog">
+                <div class="tile-content">
+                    <div class="tile-title">Blog</div>
+                    <div class="tile-description">Stories, tutorials, and insights</div>
                 </div>
             </div>
         </div>
